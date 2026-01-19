@@ -1,0 +1,66 @@
+import { Table } from "antd";
+import { columns } from "../../utils/columnsOfTable";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getAllCoins } from "../../redux/slicers/listOfCoins";
+import { useNavigate } from "react-router";
+import ModalAddToPortfolio from "../ModalAddPortfolio";
+import { buyCoin } from "../../redux/slicers/portfolioSlice";
+import LastUpdated from "../LastUpdated";
+
+const REFRESH_INTERVAL = 30000;
+
+const CryptoTable = () => {
+    const navigate = useNavigate();
+
+    const { coins, loading, timestamp } = useSelector((state) => state.information);
+    const dispatch = useDispatch();
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedCoin, setSelectedCoin] = useState(null);
+
+    useEffect(() => {
+        dispatch(getAllCoins());
+        const intervalId = setInterval(() => {
+            dispatch(getAllCoins());
+        }, REFRESH_INTERVAL);
+
+        return () => clearInterval(intervalId);
+    }, [dispatch]);
+
+    const handleRowClick = (record) => ({
+        onClick: () => navigate(`/coin/${record.id}`),
+    });
+
+    const handleOpenBuyModal = (coinRecord) => {
+        setSelectedCoin(coinRecord);
+        setIsModalOpen(true);
+    };
+
+    const handleBuy = ({ coin, amount }) => {
+        dispatch(buyCoin({ coin, amount }));
+        setIsModalOpen(false);
+    };
+
+    return (
+        <div>
+            <LastUpdated timestamp={timestamp} />
+            <Table
+                columns={columns(handleOpenBuyModal)}
+                dataSource={coins}
+                rowKey="id"
+                onRow={handleRowClick}
+                loading={loading}
+            />
+
+            <ModalAddToPortfolio
+                open={isModalOpen}
+                coin={selectedCoin}
+                onClose={() => setIsModalOpen(false)}
+                onBuy={handleBuy}
+            />
+        </div>
+    );
+};
+
+export default CryptoTable;
