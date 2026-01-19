@@ -40,10 +40,8 @@ const PortfolioSummary = ({ onClick }) => {
   return (
     <div onClick={onClick} className="portfolio-summary">
       <WalletOutlined className="portfolio-summary__icon" />
-
       <div className="portfolio-summary__content">
         <Text type="secondary">Итого:</Text>
-
         <div className="portfolio-summary__value">
           {formatRu2(stats.currentUsd)} USD
           {stats.initialUsd > 0 && (
