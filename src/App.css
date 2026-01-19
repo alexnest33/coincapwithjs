@@ -397,3 +397,129 @@
   gap: 16px;
   margin-bottom: 16px;
 }
+
+
+
+   * {
+    box-sizing: border-box;
+  }
+  
+  img, svg {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  
+  @media (max-width: 992px) {
+    .app-layout__header {
+      flex-wrap: wrap;
+      justify-content: center; 
+      gap: 12px;
+    }
+  
+    
+    .portfolio-summary {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .app-layout {
+      padding: 12px; 
+    }
+  
+    .portfolio-summary__icon {
+      font-size: 22px;
+    }
+  
+    .portfolio-summary__value {
+      font-size: 16px;
+    }
+  }
+  
+ 
+  @media (max-width: 768px) {
+    .top-coins {
+      width: 100%;
+      justify-content: center;
+      gap: 14px;
+    }
+  
+    .top-coins__label {
+      min-width: auto;     
+      width: 100%;
+      text-align: center;
+    }
+  
+    .top-coins__item {
+      min-width: auto;     
+      width: 30%;          
+      text-align: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .top-coins__item {
+      width: 100%;       
+    }
+  
+    .top-coins__name {
+      font-size: 14px;
+    }
+  }
+  
+ 
+  @media (max-width: 992px) {
+    .coin-details-wrapper {
+      margin: 24px auto; 
+      width: min(1200px, 100%);
+    }
+  
+    .coin-details-card,
+    .coin-chart-container {
+      padding: 16px 16px; 
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .coin-details-wrapper {
+      gap: 16px;
+    }
+  
+    .coin-details-header,
+    .coin-chart-header {
+      font-size: 14px;
+    }
+  
+    .interval-btn {
+      padding: 6px 8px;
+      font-size: 12px;
+    }
+  
+    .back-button-container {
+      margin: 24px 0 12px;
+    }
+  
+    .back-button-container .ant-btn,
+    .back-to-list-btn {
+      width: 100%;
+      padding: 10px 14px;
+    }
+  
+    .coin-buy-button-row {
+      justify-content: center; 
+    }
+  }
+  
+  
+  @media (max-width: 768px) {
+    .portfolio-modal__total {
+      justify-content: center;
+    }
+  
+    .portfolio-modal__total-text {
+      font-size: 14px;
+    }
+  }
+  

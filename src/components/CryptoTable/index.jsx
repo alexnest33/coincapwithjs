@@ -51,6 +51,7 @@ const CryptoTable = () => {
                 rowKey="id"
                 onRow={handleRowClick}
                 loading={loading}
+                scroll={{ x: 900 }}
             />
 
             <ModalAddToPortfolio
