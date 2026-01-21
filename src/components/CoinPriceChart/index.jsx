@@ -11,7 +11,7 @@ import {
     Tooltip,
     ResponsiveContainer,
 } from "recharts";
-import { coinsHistory } from "../../redux/slicers/historyOfCoins";
+import { coinHistory, coinsHistory } from "../../redux/slicers/historyOfCoins";
 import { intervals } from "../../utils/chartIntervals";
 
 
@@ -19,7 +19,7 @@ import { intervals } from "../../utils/chartIntervals";
   const CoinPriceChart = () => {
     const { slug } = useParams();
     const dispatch = useDispatch();
-    const { history } = useSelector((state) => state.history);
+    const  history  = useSelector(coinHistory);
   
     const [activeInterval, setActiveInterval] = useState(intervals[0]);
     const [isLoading, setIsLoading] = useState(false);

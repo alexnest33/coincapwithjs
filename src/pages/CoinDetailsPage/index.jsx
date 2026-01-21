@@ -1,15 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useState } from "react";
+import { selectCoins } from "../../redux/slicers/listOfCoins";
+import { buyCoin } from "../../redux/slicers/portfolioSlice";
 import CoinOverview from "../../components/CoinOverview";
 import BackToTable from "../../components/BackToTable";
 import ModalAddToPortfolio from "../../components/ModalAddPortfolio";
-import { buyCoin } from "../../redux/slicers/portfolioSlice";
 import BuyButton from "../../components/BuyButton";
+
 
 const CoinDetailsPage = () => {
   const { slug } = useParams();
-  const { coins } = useSelector((state) => state.information);
+  const coins = useSelector(selectCoins);
   const coin = coins.find((c) => c.id === slug);
   const dispatch = useDispatch();
   const [isBuyOpen, setIsBuyOpen] = useState(false);

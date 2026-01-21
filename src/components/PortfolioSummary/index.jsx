@@ -7,12 +7,14 @@ import {
   signedMoney,
   signedPercent,
 } from "../../utils/formatersOfPrice";
+import { selectCoins } from "../../redux/slicers/listOfCoins";
+import { selectPortfolioPositionsSafe } from "../../redux/slicers/portfolioSlice";
 
 const { Text } = Typography;
 
 const PortfolioSummary = ({ onClick }) => {
-  const coins = useSelector((s) => s.information.coins);
-  const positions = useSelector((s) => s.portfolio?.positions || {});
+  const coins = useSelector(selectCoins);
+  const positions = useSelector(selectPortfolioPositionsSafe);
 
   const stats = useMemo(() => {
     const arr = Object.values(positions);

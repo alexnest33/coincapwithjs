@@ -2,14 +2,16 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router";
 import { removeCoin } from "../../redux/slicers/portfolioSlice";
+import { selectCoins } from "../../redux/slicers/listOfCoins";
+import { selectPortfolioPositionsSafe } from "../../redux/slicers/portfolioSlice";
 import TopCoinsRow from "../TopCoinsRow";
 import PortfolioSummary from "../PortfolioSummary";
 import PortfolioModal from "../PortfolioModal";
 
 const AppLayout = () => {
     const dispatch = useDispatch();
-    const positions = useSelector((s) => s.portfolio?.positions || {});
-    const { coins } = useSelector((s) => s.information);
+    const positions = useSelector(selectPortfolioPositionsSafe);
+    const coins = useSelector(selectCoins);
 
     const [isPortfolioOpen, setIsPortfolioOpen] = useState(false);
     const portfolioItems = Object.values(positions);

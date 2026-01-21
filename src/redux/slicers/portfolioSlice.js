@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
+
+export const selectPortfolioPositionsSafe = (state) => state.portfolio.positions || {};
+
 const initialState = {
   positions: {},
 };

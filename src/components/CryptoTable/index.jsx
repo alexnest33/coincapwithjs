@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllCoins } from "../../redux/slicers/listOfCoins";
 import { useNavigate } from "react-router";
-import ModalAddToPortfolio from "../ModalAddPortfolio";
+import { selectCoins,selectCoinsLoading,selectCoinsTimestamp } from "../../redux/slicers/listOfCoins";
 import { buyCoin } from "../../redux/slicers/portfolioSlice";
+import ModalAddToPortfolio from "../ModalAddPortfolio";
 import LastUpdated from "../LastUpdated";
 
 const REFRESH_INTERVAL = 30000;
@@ -13,7 +14,10 @@ const REFRESH_INTERVAL = 30000;
 const CryptoTable = () => {
     const navigate = useNavigate();
 
-    const { coins, loading, timestamp } = useSelector((state) => state.information);
+    const coins = useSelector(selectCoins);
+    const loading = useSelector(selectCoinsLoading)
+    const timestamp = useSelector(selectCoinsTimestamp)
+
     const dispatch = useDispatch();
 
     const [isModalOpen, setIsModalOpen] = useState(false);

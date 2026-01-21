@@ -1,11 +1,12 @@
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Typography } from "antd";
+import { selectCoins } from "../../redux/slicers/listOfCoins";
 
 const { Text } = Typography;
 
 const TopCoinsRow = () => {
-    const coins = useSelector((s) => s.information.coins);
+    const coins = useSelector(selectCoins);
 
     const top3 = useMemo(() => {
         if (!coins?.length) return [];
